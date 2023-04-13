@@ -2,7 +2,7 @@ import React from 'react';
 import { createStyles, Grid } from '@mantine/core';
 import { ChildlessBaseComponent } from '../../../app/interfaces/BaseComponent';
 import classNames from 'classnames';
-import { NavLink } from './NavLink';
+import { Tabs } from './Tabs';
 import { colors } from '../../../app/constants/colors';
 import { Link } from 'react-router-dom';
 
@@ -31,8 +31,8 @@ export const Navbar = ({ className }: ChildlessBaseComponent) => {
                 </Link>
             </Grid.Col>
             <Grid.Col span={6} className={classes.linksContainer}>
-                <NavLink href="/">Home</NavLink>
-                <NavLink href="/tickets">Tickets</NavLink>
+                <Tabs href="/">Home</Tabs>
+                <Tabs href="/tickets">Tickets</Tabs>
             </Grid.Col>
         </Grid>
     );
