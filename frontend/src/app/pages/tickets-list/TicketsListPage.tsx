@@ -1,19 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Paper, createStyles, Center } from '@mantine/core';
 import { colors } from '../../constants/colors';
-import { TicketsListTable, TicketsListTableItemVM } from '../../tables/TicketsListTable';
-
-const items: TicketsListTableItemVM[] = [
-    {
-        id: 'id-5426463',
-        email: 'test@example.com',
-        title: 'ticket title',
-        description: 'ticket description',
-        price: 'ticket price',
-        amount: 5,
-        supplier: 'test supplier',
-    },
-];
+import { TicketsListTable } from '../../tables/TicketsListTable';
+import { AppDispatch, RootState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTickets } from '../../store/ticketsSlice';
 
 const useStyles = createStyles((theme) => ({
     formContainer: {
@@ -29,13 +20,19 @@ const useStyles = createStyles((theme) => ({
 
 export const TicketsListPage = () => {
     const { classes } = useStyles();
+    const { tickets } = useSelector((state: RootState) => state.tickets);
+    const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+        dispatch(fetchTickets());
+    }, []);
 
     return (
         <>
             <Center>
                 <Paper p="xl" shadow="md" className={classes.formContainer}>
                     <h3 className={classes.header}>Tickets list</h3>
-                    <TicketsListTable items={items} />
+                    <TicketsListTable items={tickets} />
                 </Paper>
             </Center>
         </>
