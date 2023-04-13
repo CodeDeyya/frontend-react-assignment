@@ -24,13 +24,13 @@ export const AddTicketsPage = () => {
     };
 
     return (
-        <PageLayout>
+        <>
             <Center>
                 <Paper p="xl" shadow="md" className={classes.formContainer}>
                     <h3 className={classes.header}>Add Tickets</h3>
                     <AddTicketsForm onSubmit={onFormSubmit} />
                 </Paper>
             </Center>
-        </PageLayout>
+        </>
     );
 };

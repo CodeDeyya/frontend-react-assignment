@@ -1,7 +1,7 @@
 import React from 'react';
-import { BaseComponent } from '../../../app/interfaces/BaseComponent';
 import { Navbar } from '../Navbar/Navbar';
 import { Container, createStyles } from '@mantine/core';
+import { Outlet } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
     navbar: {
@@ -9,12 +9,14 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export const PageLayout = ({ children }: BaseComponent) => {
+export const PageLayout: React.FC = () => {
     const { classes } = useStyles();
     return (
         <>
             <Navbar className={classes.navbar} />
-            <Container>{children}</Container>
+            <Container>
+                <Outlet />
+            </Container>
         </>
     );
 };

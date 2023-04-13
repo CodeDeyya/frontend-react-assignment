@@ -32,13 +32,13 @@ export const TicketsListPage = () => {
     const { classes } = useStyles();
 
     return (
-        <PageLayout>
+        <>
             <Center>
                 <Paper p="xl" shadow="md" className={classes.formContainer}>
                     <h3 className={classes.header}>Tickets list</h3>
                     <TicketsListTable items={items} />
                 </Paper>
             </Center>
-        </PageLayout>
+        </>
     );
 };

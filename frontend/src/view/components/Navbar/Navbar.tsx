@@ -4,6 +4,7 @@ import { ChildlessBaseComponent } from '../../../app/interfaces/BaseComponent';
 import classNames from 'classnames';
 import { NavLink } from './NavLink';
 import { colors } from '../../../app/constants/colors';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
     navbarContainer: {
@@ -25,11 +26,13 @@ export const Navbar = ({ className }: ChildlessBaseComponent) => {
     return (
         <Grid className={classNames(className, classes.navbarContainer)}>
             <Grid.Col span={6}>
-                <img src="/images/ET-logo.png" alt="Events travel logo" />
+                <Link to="/">
+                    <img src="/images/ET-logo.png" alt="Events travel logo" />
+                </Link>
             </Grid.Col>
             <Grid.Col span={6} className={classes.linksContainer}>
-                <NavLink href="#">Home</NavLink>
-                <NavLink href="#">Tickets</NavLink>
+                <NavLink href="/">Home</NavLink>
+                <NavLink href="/tickets">Tickets</NavLink>
             </Grid.Col>
         </Grid>
     );
