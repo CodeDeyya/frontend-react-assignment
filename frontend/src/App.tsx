@@ -18,8 +18,8 @@ function App() {
                 }}
             >
                 <Routes>
-                    <Route path="/" element={<PageLayout />}>
-                        <Route index element={<AddTicketsPage />} />
+                    <Route element={<PageLayout />}>
+                        <Route path="/" element={<AddTicketsPage />} />
                         <Route path="tickets" element={<TicketsListPage />} />
                     </Route>
                 </Routes>
