@@ -1,6 +1,5 @@
 import React from 'react';
 import { Paper, createStyles, Center } from '@mantine/core';
-import { PageLayout } from '../../../view/components/PageLayout/PageLayout';
 import { colors } from '../../constants/colors';
 import { TicketsListTable, TicketsListTableItemVM } from '../../tables/TicketsListTable';
 

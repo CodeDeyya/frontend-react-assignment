@@ -1,7 +1,5 @@
-import React from 'react';
 import './App.css';
-import { createStyles, MantineProvider } from '@mantine/core';
-import { colors } from './app/constants/colors';
+import { MantineProvider } from '@mantine/core';
 import { Provider } from 'react-redux';
 import { store } from './app/store/store';
 import { Route, Routes } from 'react-router-dom';
