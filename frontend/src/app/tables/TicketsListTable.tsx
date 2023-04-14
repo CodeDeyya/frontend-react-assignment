@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table } from '@mantine/core';
-import { Ticket } from '../../data/models/Ticket';
+import { TicketWithId } from '../../data/models/Ticket';
 
 interface TicketsListTableProps {
-    items: Ticket[];
+    items: TicketWithId[];
 }
 
 export const TicketsListTable = ({ items }: TicketsListTableProps) => {
