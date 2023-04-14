@@ -1,138 +1,53 @@
-# Events Travel Frontend assignment
+# Events Travel Frontend Assignment - Completed
 
-This repo contains the frontend assignment for applicants. We would like to use this assignment to get some insight into your process of thought. You don't have to worry, you can not fail this assignment as it's not a test. We like to use this assignment as a starting point for the interview conversation 🙂
+## Introduction
 
-The repository contains two projects: **Frontend** & **API**, you will be working only in the Frontend, but will utilize the API for fetching data.
+This is my completed assignment for the frontend developer position at Events Travel. The assignment was to finish a mini-application that could add and show tickets using an API. The repository contained two projects: Frontend & API, and I only worked on the frontend, but utilized the API for fetching data.
 
-## Assignment
+## Technologies Used
 
-The assigment is to finish this mini-application that can add and show tickets using the API. We've already provided a basic folder structure, UI components and initialized the redux store.
+- [ReactJS](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Mantine UI](https://mantine.dev/)
+- [React-hook-form](https://react-hook-form.com/)
+- [Yup](https://github.com/jquense/yup)
+- [React-router-dom](https://reactrouter.com/web/guides/quick-start)
+- [Prettier](https://prettier.io/)
 
-### Pre-installed and used packages
-- React-hook-form - Form state management package
-- Mantine UI - UI component library
-- Redux toolkit - Simplified redux state management
-- Prettier - This project supports prettier
+Note that I also used a local proxy in the React project to avoid CORS issues with the backend API.
 
-### Still missing in the application
-- Routing
-- Api calls to the backend to populate the app with data
-- Implementation of the redux store to save the data from the API
-- Form validation (<b>TIP!</b> React-hook-form integrates easily with Yup: https://github.com/jquense/yup) 
+## Project Setup
 
-### Requirements
+To run this project, follow the steps below:
 
-- The project should use TypeScript
-- The provided API should be used to fetch and post data
-- The home and list page should be accessible by URL (so Routing should be used)
-- Use functional components
-- Use React Hooks
-- Use Redux (toolkit) to manage state
-- Use margins and paddings consistently
+1. Clone the project repository
+2. Navigate to the root directory of the project in your terminal
+3. Run `yarn install` to install the project dependencies
+4. Run `yarn start` to start the frontend server
+5. The application will open in your default browser on `http://localhost:3000`
 
-**Note:** If you are stuck on a specific requirement and can't continue, consider just skipping it so you can continue with the rest.
+## Implemented Features
 
-**Home**
+I have implemented the following features in the project:
 
-This is where an user can add new tickets. This screen is really basic. It just contains a navbar, a form with a few input fields and an add button.
-![Home](https://firebasestorage.googleapis.com/v0/b/fe-assignment-d05f6.appspot.com/o/ticket-form.png?alt=media&token=3657cf34-7bf9-4d58-a74e-a85796ddaf57)
+- Home page where users can add new tickets
+- List page where all tickets are displayed
+- Routing between the Home and List pages
+- Fetching and posting data using the provided API
+- Form validation using Yup and React-hook-form
+- Use of TypeScript, functional components, React Hooks, and Redux Toolkit for state management
+- Consistent use of margins and paddings
+- Added test cases for the components and reducers
 
-**List**
+## Assumptions Made
 
-This is where a list of all the tickets are shown
-![Home](https://firebasestorage.googleapis.com/v0/b/fe-assignment-d05f6.appspot.com/o/ticket-list.png?alt=media&token=976758f0-c167-4d95-8215-2e64498a28bc)
+While working on the project, I made the following assumptions:
 
-#### Colors, fonts and logo's
+- The ticket ID is automatically generated on the backend and is not required on the frontend. Hence, I did not include it in the POST request to create a ticket.
+- If the ticket ID was sent in the success response from the backend, it could have been added to the ticket list in Redux with the ID.
+- I named constants and variables in such a way that they did not require comments, minimizing the use of comments in the code.
 
-- The Events Travel logo can be found at `frontend/public/ET-logo.png`
-- Colors
-  - Blue: `#2e93bf`
-  - Light grey: `#707070`
-  - White: `#ffffff`
-  - Red: `red`
-- Use whatever font you like best ;)
+## Conclusion
 
-## API Documentation
-
-### Usage
-
-- Install dependencies with `yarn install`
-- Run the server with `yarn start` or `yarn dev`
-- The api will be accessible at [http://locahost:5000](http://localhost:5000 ) 
-- We have a Postman collection available in the `api` directory
-
-### Specifications
-
-#### Interfaces
-
-##### Ticket
-
-```
-interface Ticket {
-  id: number;
-  email: string;
-  title: string;
-  description: string;
-  price: number;
-  amount: number;
-  supplier: string;
-}
-```
-
-#### Endpoints
-
-##### Get all tickets
-
-- URL:
-  `/tickets`
-- Method:
-  `GET`
-- Success Response
-
-```
-interface GetTicketsResponse {
-  data: Ticket[];
-}
-```
-
-##### Add new ticket
-
-- URL:
-  `/tickets`
-- Method:
-  `POST`
-- Request parameters
-
-```
-interface PostTicketsRequest {
-  ticket: Ticket;
-}
-```
-
-- validations
-
-`ticket` cannot be `null | undefined`
-
-`ticket.email` must be a valid email
-
-`ticket.price` must be a number
-
-`ticket.amount` must be a number
-
-- Success Response
-
-```
-interface GeneralResponse {
-  message: string
-}
-```
-
-- Validation Error Response
-
-```
-interface ValidationErrorResponse {
-  message: string,
-  valid: boolean
-}
-```
-
+This project was a great opportunity for me to showcase my skills and to learn new technologies such as Mantine UI and Redux Toolkit. I am confident that my completed project meets the requirements outlined in the assignment, and I am excited about the possibility of discussing my thought process in further detail during an interview.
