@@ -24,7 +24,7 @@ export const Navbar = ({ className }: ChildlessBaseComponent) => {
     const { classes } = useStyles();
 
     return (
-        <Grid className={classNames(className, classes.navbarContainer)}>
+        <Grid className={classNames(className, classes.navbarContainer)} data-testid="navbar-grid">
             <Grid.Col span={6}>
                 <Link to="/">
                     <img src="/images/ET-logo.png" alt="Events travel logo" />
