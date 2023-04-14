@@ -5,7 +5,7 @@ import { colors } from '../../constants/colors';
 import { TicketWithoutId } from '../../../data/models/Ticket';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
-import { createTicket, getCreateLoading } from '../../store/ticketsSlice';
+import { createTicket, getCreateError, getCreateLoading } from '../../store/ticketsSlice';
 
 const useStyles = createStyles((theme) => ({
     formContainer: {
@@ -23,6 +23,7 @@ export const AddTicketsPage = () => {
     const { classes } = useStyles();
     const dispatch = useDispatch<AppDispatch>();
     const loading = useSelector(getCreateLoading);
+    const error = useSelector(getCreateError);
     const onFormSubmit = (values: TicketWithoutId) => {
         dispatch(createTicket(values));
     };
@@ -32,7 +33,7 @@ export const AddTicketsPage = () => {
             <Center>
                 <Paper p="xl" shadow="md" className={classes.formContainer}>
                     <h3 className={classes.header}>Add Tickets</h3>
-                    <AddTicketsForm onSubmit={onFormSubmit} loading={loading} />
+                    <AddTicketsForm onSubmit={onFormSubmit} loading={loading} error={error} />
                 </Paper>
             </Center>
         </>

@@ -9,6 +9,8 @@ interface TicketState {
     //to store the error and loading when creating a ticket
     createError: string;
     createLoading: boolean;
+    //to account for successful ticket creation
+    createTicketSuccess: boolean;
     //to store the error and loading when fetching tickets
     fetchError: string;
     fetchLoading: boolean;
@@ -21,6 +23,7 @@ const initialState: TicketState = {
     createLoading: false,
     fetchError: '',
     fetchLoading: false,
+    createTicketSuccess: false,
 };
 
 export const fetchTickets = createAsyncThunk('tickets/fetch', async (thunkAPI) => {
@@ -66,6 +69,9 @@ export const ticketsSlice = createSlice({
         setFetchLoading: (state, action) => {
             state.fetchLoading = action.payload;
         },
+        setCreateTicketSuccess: (state, action) => {
+            state.createTicketSuccess = action.payload;
+        },
         addTicket: (state, action) => {
             state.tickets.push(action.payload);
         },
@@ -94,6 +100,7 @@ export const ticketsSlice = createSlice({
         // create ticket success
         builder.addCase(createTicket.fulfilled, (state, action) => {
             state.createLoading = false;
+            state.createTicketSuccess = true;
         });
 
         // create ticket error
@@ -106,16 +113,18 @@ export const ticketsSlice = createSlice({
         builder.addCase(createTicket.pending, (state, action) => {
             state.createLoading = true;
             state.createError = '';
+            state.createTicketSuccess = false;
         });
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { setFetchError, setCreateError } = ticketsSlice.actions;
+export const { setFetchError, setCreateError, setCreateTicketSuccess } = ticketsSlice.actions;
 export const getTickets = (state: RootState) => state.tickets.tickets;
 export const getFetchError = (state: RootState) => state.tickets.fetchError;
 export const getCreateError = (state: RootState) => state.tickets.createError;
 export const getFetchLoading = (state: RootState) => state.tickets.fetchLoading;
 export const getCreateLoading = (state: RootState) => state.tickets.createLoading;
+export const getCreateTicketSuccess = (state: RootState) => state.tickets.createTicketSuccess;
 
 export default ticketsSlice.reducer;

@@ -16,6 +16,10 @@ const useStyles = createStyles((theme) => ({
         color: 'red',
         fontSize: '.875rem',
     },
+    successText: {
+        color: 'green',
+        fontSize: '.875rem',
+    },
 }));
 
 const defaultValues: TicketWithoutId = {
@@ -27,7 +31,7 @@ const defaultValues: TicketWithoutId = {
     supplier: '',
 };
 
-export const AddTicketsForm = ({ onSubmit, loading }: FormProps<TicketWithoutId>) => {
+export const AddTicketsForm = ({ onSubmit, loading, error }: FormProps<TicketWithoutId>) => {
     const {
         control,
         handleSubmit,
@@ -156,6 +160,11 @@ export const AddTicketsForm = ({ onSubmit, loading }: FormProps<TicketWithoutId>
                     }}
                 />
             </Grid.Col>
+            {error && ( // If the form was not successfully submitted, show an error message
+                <Grid.Col span={12}>
+                    <p className={classes.errorText}>Something went wrong!</p>
+                </Grid.Col>
+            )}
             <Grid.Col span={12} className={classes.buttonContainer}>
                 <Button disabled={loading} onClick={handleSubmit(resetAndSubmit)}>
                     Add tickets
