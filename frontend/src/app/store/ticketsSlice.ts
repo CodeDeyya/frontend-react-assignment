@@ -113,4 +113,9 @@ export const ticketsSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { setFetchError, setCreateError } = ticketsSlice.actions;
 export const getTickets = (state: RootState) => state.tickets.tickets;
+export const getFetchError = (state: RootState) => state.tickets.fetchError;
+export const getCreateError = (state: RootState) => state.tickets.createError;
+export const getFetchLoading = (state: RootState) => state.tickets.fetchLoading;
+export const getCreateLoading = (state: RootState) => state.tickets.createLoading;
+
 export default ticketsSlice.reducer;

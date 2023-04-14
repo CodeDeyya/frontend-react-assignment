@@ -3,9 +3,9 @@ import { Paper, createStyles, Center } from '@mantine/core';
 import { AddTicketsForm } from '../../forms/AddTicketsForm';
 import { colors } from '../../constants/colors';
 import { TicketWithoutId } from '../../../data/models/Ticket';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
-import { createTicket } from '../../store/ticketsSlice';
+import { createTicket, getCreateLoading } from '../../store/ticketsSlice';
 
 const useStyles = createStyles((theme) => ({
     formContainer: {
@@ -22,7 +22,7 @@ const useStyles = createStyles((theme) => ({
 export const AddTicketsPage = () => {
     const { classes } = useStyles();
     const dispatch = useDispatch<AppDispatch>();
-
+    const loading = useSelector(getCreateLoading);
     const onFormSubmit = (values: TicketWithoutId) => {
         dispatch(createTicket(values));
     };
@@ -32,7 +32,7 @@ export const AddTicketsPage = () => {
             <Center>
                 <Paper p="xl" shadow="md" className={classes.formContainer}>
                     <h3 className={classes.header}>Add Tickets</h3>
-                    <AddTicketsForm onSubmit={onFormSubmit} />
+                    <AddTicketsForm onSubmit={onFormSubmit} loading={loading} />
                 </Paper>
             </Center>
         </>

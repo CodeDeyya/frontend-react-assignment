@@ -14,6 +14,8 @@ const useStyles = createStyles((theme) => ({
     },
     errorText: {
         color: 'red',
+        font: 'inherit',
+        fontSize: '.875rem',
     },
 }));
 
@@ -26,13 +28,18 @@ const defaultValues: TicketWithoutId = {
     supplier: '',
 };
 
-export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
+export const AddTicketsForm = ({ onSubmit, loading }: FormProps<TicketWithoutId>) => {
     const {
         control,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm<TicketWithoutId>({ resolver: yupResolver(ticketValidator), defaultValues });
     const { classes } = useStyles();
+    const resetAndSubmit = (data: TicketWithoutId) => {
+        reset();
+        onSubmit(data);
+    };
 
     return (
         <Grid>
@@ -45,7 +52,9 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                             <>
                                 <FormLabel>Email</FormLabel>
                                 <Input onChange={onChange} value={value} name={name} />
-                                <p className={classes.errorText}>{errors.email?.message}</p>
+                                {errors.email && (
+                                    <p className={classes.errorText}>{errors.email.message}</p>
+                                )}
                             </>
                         );
                     }}
@@ -60,7 +69,9 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                             <>
                                 <FormLabel>Title</FormLabel>
                                 <Input onChange={onChange} value={value} name={name} />
-                                <p className={classes.errorText}>{errors.title?.message}</p>
+                                {errors.title && (
+                                    <p className={classes.errorText}>{errors.title.message}</p>
+                                )}
                             </>
                         );
                     }}
@@ -75,7 +86,11 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                             <>
                                 <FormLabel>Description</FormLabel>
                                 <Textarea onChange={onChange} value={value} name={name} />
-                                <p className={classes.errorText}>{errors.description?.message}</p>
+                                {errors.description && (
+                                    <p className={classes.errorText}>
+                                        {errors.description?.message}
+                                    </p>
+                                )}
                             </>
                         );
                     }}
@@ -95,7 +110,9 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                                     value={value}
                                     name={name}
                                 />
-                                <p className={classes.errorText}>{errors.price?.message}</p>
+                                {errors.price && (
+                                    <p className={classes.errorText}>{errors.price.message}</p>
+                                )}
                             </>
                         );
                     }}
@@ -115,7 +132,9 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                                     value={value}
                                     name={name}
                                 />
-                                <p className={classes.errorText}>{errors.amount?.message}</p>
+                                {errors.amount && (
+                                    <p className={classes.errorText}>{errors.amount.message}</p>
+                                )}
                             </>
                         );
                     }}
@@ -130,14 +149,18 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                             <>
                                 <FormLabel>Supplier</FormLabel>
                                 <Input onChange={onChange} value={value} name={name} />
-                                <p className={classes.errorText}>{errors.supplier?.message}</p>
+                                {errors.supplier && (
+                                    <p className={classes.errorText}>{errors.supplier.message}</p>
+                                )}
                             </>
                         );
                     }}
                 />
             </Grid.Col>
             <Grid.Col span={12} className={classes.buttonContainer}>
-                <Button onClick={handleSubmit(onSubmit)}>Add tickets</Button>
+                <Button disabled={loading} onClick={handleSubmit(resetAndSubmit)}>
+                    Add tickets
+                </Button>
             </Grid.Col>
         </Grid>
     );
