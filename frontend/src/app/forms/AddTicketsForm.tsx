@@ -3,13 +3,17 @@ import { FormProps } from '../interfaces/form';
 import { useForm, Controller } from 'react-hook-form';
 import { Grid, Input, Textarea, Button, createStyles } from '@mantine/core';
 import { FormLabel } from '../../view/components/Forms/FormLabel';
-import { TicketWithoutId } from '../../data/models/Ticket';
+import { TicketWithoutId, ticketValidator } from '../../data/models/Ticket';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const useStyles = createStyles((theme) => ({
     buttonContainer: {
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
+    },
+    errorText: {
+        color: 'red',
     },
 }));
 
@@ -23,7 +27,11 @@ const defaultValues: TicketWithoutId = {
 };
 
 export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
-    const { control, handleSubmit } = useForm<TicketWithoutId>({ defaultValues });
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<TicketWithoutId>({ resolver: yupResolver(ticketValidator), defaultValues });
     const { classes } = useStyles();
 
     return (
@@ -37,6 +45,7 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                             <>
                                 <FormLabel>Email</FormLabel>
                                 <Input onChange={onChange} value={value} name={name} />
+                                <p className={classes.errorText}>{errors.email?.message}</p>
                             </>
                         );
                     }}
@@ -51,6 +60,7 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                             <>
                                 <FormLabel>Title</FormLabel>
                                 <Input onChange={onChange} value={value} name={name} />
+                                <p className={classes.errorText}>{errors.title?.message}</p>
                             </>
                         );
                     }}
@@ -65,6 +75,7 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                             <>
                                 <FormLabel>Description</FormLabel>
                                 <Textarea onChange={onChange} value={value} name={name} />
+                                <p className={classes.errorText}>{errors.description?.message}</p>
                             </>
                         );
                     }}
@@ -84,6 +95,7 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                                     value={value}
                                     name={name}
                                 />
+                                <p className={classes.errorText}>{errors.price?.message}</p>
                             </>
                         );
                     }}
@@ -103,6 +115,7 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                                     value={value}
                                     name={name}
                                 />
+                                <p className={classes.errorText}>{errors.amount?.message}</p>
                             </>
                         );
                     }}
@@ -117,6 +130,7 @@ export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
                             <>
                                 <FormLabel>Supplier</FormLabel>
                                 <Input onChange={onChange} value={value} name={name} />
+                                <p className={classes.errorText}>{errors.supplier?.message}</p>
                             </>
                         );
                     }}
