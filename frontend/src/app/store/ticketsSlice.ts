@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { Ticket } from '../../data/models/Ticket';
+import { PostTicketsRequest, TicketWithId, TicketWithoutId } from '../../data/models/Ticket';
 import axios from 'axios';
 import { RootState } from './store';
 
 interface TicketState {
-    tickets: Ticket[];
+    tickets: TicketWithId[];
 }
 
 const initialState: TicketState = {
@@ -18,20 +18,26 @@ export const fetchTickets = createAsyncThunk('tickets/fetch', async (thunkAPI) =
         url: '/tickets',
     };
     const response = await axios(config);
-    const tickets: Ticket[] = response.data.data;
+    const tickets: TicketWithId[] = response.data.data;
     return tickets;
 });
 
-export const createTicket = createAsyncThunk('tickets/create', async (ticket: Ticket, thunkAPI) => {
-    await fetch('http://localhost:5000/tickets', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(ticket),
-    });
-    return ticket;
-});
+export const createTicket = createAsyncThunk(
+    'tickets/create',
+    async (ticket: TicketWithoutId, thunkAPI) => {
+        const data: PostTicketsRequest = { ticket };
+        const config = {
+            method: 'post',
+            url: '/tickets',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: JSON.stringify(data),
+        };
+        await axios(config);
+        return ticket;
+    }
+);
 
 export const ticketsSlice = createSlice({
     name: 'tickets',
@@ -44,9 +50,6 @@ export const ticketsSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchTickets.fulfilled, (state, action) => {
             state.tickets = action.payload;
-        });
-        builder.addCase(createTicket.fulfilled, (state, action) => {
-            state.tickets.push(action.payload);
         });
     },
 });

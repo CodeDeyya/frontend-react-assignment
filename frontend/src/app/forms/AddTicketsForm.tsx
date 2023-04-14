@@ -3,6 +3,7 @@ import { FormProps } from '../interfaces/form';
 import { useForm, Controller } from 'react-hook-form';
 import { Grid, Input, Textarea, Button, createStyles } from '@mantine/core';
 import { FormLabel } from '../../view/components/Forms/FormLabel';
+import { TicketWithoutId } from '../../data/models/Ticket';
 
 const useStyles = createStyles((theme) => ({
     buttonContainer: {
@@ -12,26 +13,17 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export interface AddTicketsFormValues {
-    email: string;
-    title: string;
-    description: string;
-    price: string;
-    amount: number;
-    supplier: string;
-}
-
-const defaultValues: AddTicketsFormValues = {
+const defaultValues: TicketWithoutId = {
     email: '',
     title: '',
     description: '',
-    price: '',
+    price: 0,
     amount: 1,
     supplier: '',
 };
 
-export const AddTicketsForm = ({ onSubmit }: FormProps<AddTicketsFormValues>) => {
-    const { control, handleSubmit } = useForm<AddTicketsFormValues>({ defaultValues });
+export const AddTicketsForm = ({ onSubmit }: FormProps<TicketWithoutId>) => {
+    const { control, handleSubmit } = useForm<TicketWithoutId>({ defaultValues });
     const { classes } = useStyles();
 
     return (
