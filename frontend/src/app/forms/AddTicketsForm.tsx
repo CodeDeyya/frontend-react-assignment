@@ -14,7 +14,6 @@ const useStyles = createStyles((theme) => ({
     },
     errorText: {
         color: 'red',
-        font: 'inherit',
         fontSize: '.875rem',
     },
 }));
