@@ -20,7 +20,7 @@ function App() {
                 <Routes>
                     <Route element={<PageLayout />}>
                         <Route path="/" element={<AddTicketsPage />} />
-                        <Route path="tickets" element={<TicketsListPage />} />
+                        <Route path="/my-tickets" element={<TicketsListPage />} />
                     </Route>
                 </Routes>
             </MantineProvider>
