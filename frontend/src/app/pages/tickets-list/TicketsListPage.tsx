@@ -4,7 +4,7 @@ import { colors } from '../../constants/colors';
 import { TicketsListTable } from '../../tables/TicketsListTable';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTickets } from '../../store/ticketsSlice';
+import { fetchTickets, getTickets } from '../../store/ticketsSlice';
 
 const useStyles = createStyles((theme) => ({
     formContainer: {
@@ -20,7 +20,7 @@ const useStyles = createStyles((theme) => ({
 
 export const TicketsListPage = () => {
     const { classes } = useStyles();
-    const { tickets } = useSelector((state: RootState) => state.tickets);
+    const tickets = useSelector(getTickets);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {

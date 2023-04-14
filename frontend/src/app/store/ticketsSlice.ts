@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Ticket } from '../../data/models/Ticket';
 import axios from 'axios';
+import { RootState } from './store';
 
 interface TicketState {
     tickets: Ticket[];
@@ -52,5 +53,5 @@ export const ticketsSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { fn } = ticketsSlice.actions;
-
+export const getTickets = (state: RootState) => state.tickets.tickets;
 export default ticketsSlice.reducer;
