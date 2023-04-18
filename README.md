@@ -22,10 +22,13 @@ Note that I also used a local proxy in the React project to avoid CORS issues wi
 To run this project, follow the steps below:
 
 1. Clone the project repository
-2. Navigate to the root directory of the project in your terminal
+2. Navigate to the api folder of the project in your terminal
 3. Run `yarn install` to install the project dependencies
-4. Run `yarn start` to start the frontend server
-5. The application will open in your default browser on `http://localhost:3000`
+4. Run `yarn start` to start the backend server on port 5000 (make sure this port is not used)
+5. Navigate to the frontend folder of the project in your terminal
+6. Run `yarn install` to install the project dependencies
+7. Run `yarn start` to start the frontend server
+8. The application will open in your default browser on `http://localhost:3000`
 
 ## Implemented Features
 
