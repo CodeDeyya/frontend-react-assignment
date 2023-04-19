@@ -25,10 +25,11 @@ To run this project, follow the steps below:
 2. Navigate to the api folder of the project in your terminal
 3. Run `yarn install` to install the project dependencies
 4. Run `yarn start` to start the backend server on port 5000 (make sure this port is not used)
-5. Navigate to the frontend folder of the project in your terminal
-6. Run `yarn install` to install the project dependencies
-7. Run `yarn start` to start the frontend server
-8. The application will open in your default browser on `http://localhost:3000`
+5. Open a new terminal at the root of the project
+6. Navigate to the frontend folder of the project in your terminal
+7. Run `yarn install` to install the project dependencies
+8. Run `yarn start` to start the frontend server
+9. The application will open in your default browser on `http://localhost:3000`
 
 ## Implemented Features
 
