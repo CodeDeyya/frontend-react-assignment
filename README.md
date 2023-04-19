@@ -21,6 +21,8 @@ Note that I also used a local proxy in the React project to avoid CORS issues wi
 
 To run this project, follow the steps below:
 
+** Make sure the runtime is Node V16**
+
 1. Clone the project repository
 2. Navigate to the api folder of the project in your terminal
 3. Run `yarn install` to install the project dependencies
